@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: people-app-ingress
+  namespace: sample
+  annotations:
+    kubernetes.io/ingress.className: "nginx"
+spec:
+    rules:
+    - host: people-project.com
+      http:
+          paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: people-project-service
+                  port:
+                    number: 8080
